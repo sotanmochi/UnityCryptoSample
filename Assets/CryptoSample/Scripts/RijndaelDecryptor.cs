@@ -26,8 +26,8 @@ public static class RijndaelDecryptor
 		}
 		catch(CryptographicException e)
 		{
-			Debug.Log("Decryption is failed!! Decryption password is incorrect, or encrypted assets is not allowed in this project.");
-			Debug.Log(e);
+			Debug.LogError("Decryption is failed!! Decryption password is incorrect, or encrypted asset is not allowed in this project.");
+			Debug.LogError(e);
 		}
 		decryptor.Dispose();
 
@@ -36,7 +36,7 @@ public static class RijndaelDecryptor
 
 	private static void GenerateKeyFromPassword(string password, int keySize, int blockSize, out byte[] key, out byte[] iv)
 	{
-		string pw = ConvertPassword(password); // Do not allow other projects.
+		string pw = ConvertPassword(password);
 		byte[] bSalt = System.Text.Encoding.UTF8.GetBytes(salt);
 
 		Rfc2898DeriveBytes deriveBytes = new Rfc2898DeriveBytes(pw, bSalt);

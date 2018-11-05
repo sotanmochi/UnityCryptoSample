@@ -1,5 +1,9 @@
 .DS_Store
 
+Assets/3rd Party/
+Assets/3rd Party.meta
+Models/
+
 [Aa]pp/
 [Ll]ibrary/
 [Tt]emp/
