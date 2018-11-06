@@ -1,8 +1,7 @@
 .DS_Store
 
 Assets/3rd Party/
-Assets/3rd Party.meta
-Models/
+Assets/StreamingAssets/VRM/
 
 [Aa]pp/
 [Ll]ibrary/

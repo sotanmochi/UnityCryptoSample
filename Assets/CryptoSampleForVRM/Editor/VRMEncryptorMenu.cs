@@ -17,7 +17,7 @@ public static class VRMEncryptorMenu
 		}
 
 		byte[] encryptedData = RijndaelEncryptor.Encrypt(File.ReadAllBytes(path), pw);
-		if (EditorUtility.DisplayDialog("VRM data has been encrypted. Do you want to save the encrypted data?", "", "Save", "Don't Save"))
+		if (EditorUtility.DisplayDialog("Encrypted", "VRM data has been encrypted. Do you want to save the encrypted data?", "Save", "Don't Save"))
 		{
 			var savepath = EditorUtility.SaveFilePanel("Save encrypted VRM", "", "encrypted.vrm", "bytes");
 			if (!string.IsNullOrEmpty(savepath))

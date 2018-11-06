@@ -4,4 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/CryptoSampleForVRM/Scenes/VRMImportSample.unity
+    guid: 1c1871acc04dc4ccb86dd46357e8235e

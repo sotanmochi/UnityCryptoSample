@@ -8,7 +8,7 @@ public class DecryptionSample : MonoBehaviour
 	void Start()
 	{
 		string filename = "encrypted.txt";
-		string path = Application.dataPath + "/CryptoSample/Data/" + filename;
+		string path = Application.streamingAssetsPath + "/Text/" + filename;
 		byte[] encryptedData = File.ReadAllBytes(path);
 
 		byte[] decryptedData = RijndaelDecryptor.Decrypt(encryptedData, password);

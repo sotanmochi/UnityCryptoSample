@@ -10,7 +10,7 @@ public class VRMRuntimeLoadSample : MonoBehaviour
 
 	void Start()
 	{
-		string dirpath = Application.dataPath + "/../Models/";
+		string dirpath = Application.streamingAssetsPath + "/VRM/";
 		string filepath = dirpath + filename;
 		EncryptedVRMImporter.LoadVrm(filepath, pw, OnLoadedVrm);
 	}
