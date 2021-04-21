@@ -46,7 +46,8 @@ namespace Crypto.Sample
 			}
 
 			Debug.Log("***** Encrypt *****");
-			byte[] encryptedData = RijndaelEncryptor.Encrypt(data, _Password);
+			byte[] encryptedData = await RijndaelEncryptor.EncryptAsync(data, _Password);
+			// byte[] encryptedData = RijndaelEncryptor.Encrypt(data, _Password);
 
 			if (encryptedData != null)
 			{

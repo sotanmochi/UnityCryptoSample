@@ -40,7 +40,8 @@ namespace Crypto.Sample
 			}
 
 			Debug.Log("***** Decrypt *****");
-			byte[] decryptedData = RijndaelDecryptor.Decrypt(encryptedData, _Password);
+			byte[] decryptedData = await RijndaelDecryptor.DecryptAsync(encryptedData, _Password);
+			// byte[] decryptedData = RijndaelDecryptor.Decrypt(encryptedData, _Password);
 
 			if (decryptedData != null)
 			{

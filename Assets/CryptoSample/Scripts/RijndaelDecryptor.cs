@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace Crypto
 {
@@ -25,6 +26,33 @@ namespace Crypto
 			try
 			{
 				decryptedData = decryptor.TransformFinalBlock(encryptedData, 0, encryptedData.Length);
+			}
+			catch(CryptographicException e)
+			{
+				Debug.LogError("Decryption is failed!! Decryption password is incorrect, or encrypted asset is not allowed in this project.");
+				Debug.LogError(e);
+			}
+			decryptor.Dispose();
+
+			return decryptedData;
+		}
+
+		public static async Task<byte[]> DecryptAsync(byte[] encryptedData, string password)
+		{
+			RijndaelManaged rijndael = new RijndaelManaged();
+			rijndael.KeySize = keySize;
+			rijndael.BlockSize = blockSize;
+
+			byte[] key, iv;
+			GenerateKeyFromPassword(password, rijndael.KeySize, rijndael.BlockSize, out key, out iv);
+			rijndael.Key = key;
+			rijndael.IV = iv;
+
+			ICryptoTransform decryptor = rijndael.CreateDecryptor();
+			byte[] decryptedData = null;
+			try
+			{
+				decryptedData = await Task.Run(() => decryptor.TransformFinalBlock(encryptedData, 0, encryptedData.Length));
 			}
 			catch(CryptographicException e)
 			{

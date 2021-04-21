@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace Crypto
 {
@@ -25,6 +26,33 @@ namespace Crypto
 			try
 			{
 				encryptedData = encryptor.TransformFinalBlock(srcData, 0, srcData.Length);
+			}
+			catch(CryptographicException e)
+			{
+				Debug.Log("Encryption is failed!!");
+				Debug.Log(e);
+			}
+			encryptor.Dispose();
+
+			return encryptedData;
+		}
+
+		public static async Task<byte[]> EncryptAsync(byte[] srcData, string password)
+		{
+			RijndaelManaged rijndael = new RijndaelManaged();
+			rijndael.KeySize = keySize;
+			rijndael.BlockSize = blockSize;
+
+			byte[] key, iv;
+			GenerateKeyFromPassword(password, rijndael.KeySize, rijndael.BlockSize, out key, out iv);
+			rijndael.Key = key;
+			rijndael.IV = iv;
+
+			ICryptoTransform encryptor = rijndael.CreateEncryptor();
+			byte[] encryptedData = null;
+			try
+			{
+				encryptedData = await Task.Run(() => encryptor.TransformFinalBlock(srcData, 0, srcData.Length));
 			}
 			catch(CryptographicException e)
 			{
