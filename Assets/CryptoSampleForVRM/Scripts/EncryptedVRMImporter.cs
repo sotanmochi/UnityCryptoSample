@@ -8,7 +8,7 @@ public static class EncryptedVRMImporter
 	{
 		if (!string.IsNullOrEmpty(path))
 		{
-			VRM.VRMImporter.LoadVrmAsync(RijndaelDecryptor.Decrypt(File.ReadAllBytes(path), password), onLoaded);
+			VRM.VRMImporter.LoadVrmAsync(Crypto.RijndaelDecryptor.Decrypt(File.ReadAllBytes(path), password), onLoaded);
 		}
 	}
 }
